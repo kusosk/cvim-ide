@@ -1,0 +1,58 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  pair.cpp
+ *
+ *    Description:  
+ *
+ *        Version:  1.0
+ *        Created:  10/17/2013 01:47:51 PM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Yonghao Zhou (leo), zhouyonghao@gmail.com
+ *        Company:  
+ *
+ * =====================================================================================
+ */
+
+#include	<iostream>
+#include	<utility>
+#include	<vector>
+#include	<string>
+
+using namespace std;
+typedef pair< int, string > pair_int_string;
+typedef vector < pair_int_string > vector_pair_int_string;
+
+template <typename T1, typename T2 >
+ostream& operator << (ostream& os, pair < T1, T2 > p)
+{
+    return os << " pair [" << p.first << "] = " << p.second << " ";
+}
+
+class A {
+    public:
+        A () {}
+        A(A&) {};
+};
+    int
+main ( int argc, char *argv[] )
+{
+    vector_pair_int_string v;
+    pair_int_string p1(1, "hello");
+    v.push_back(p1);
+    pair_int_string p2 = make_pair < int, string > (2, "world");
+    cout << p2 << endl;
+    v.push_back(p2);
+
+    pair < int , char* > ic1(3, "tttt");
+    pair_int_string p3(ic1);
+    cout << p3 << endl;
+    cout << ic1 << endl;
+    bool b1 = p1 < p2;
+    cout << b1 << endl;
+
+    pair< int , A > a1;
+    return 0;
+}				/* ----------  end of function main  ---------- */

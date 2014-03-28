@@ -1,0 +1,13 @@
+#include "gtest/gtest.h"
+#include	<iostream>
+#include	<climits>
+#include    <string>
+#include    <cassert>
+
+using namespace std;
+
+TEST(, )
+{
+    ASSERT_EQ(, );
+}
+

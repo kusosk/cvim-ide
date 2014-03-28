@@ -1,0 +1,67 @@
+ool searchMatrix(vector<vector<int> > &matrix, int target) {  
+    int row = matrix.size();  
+    if(row ==0) return false;  
+    int col = matrix[0].size();  
+    if(col ==0) return false;      
+    if(target< matrix[0][0]) return false;  
+    int start = 0, end = row-1;  
+    while(start<= end)  
+    {  
+          int mid = (start+end)/2;  
+          if(matrix[mid][0] == target)  
+               return true;  
+          else if(matrix[mid][0] < target)  
+               start = mid+1;  
+          else  
+               end = mid-1;  
+     }  
+     int targetRow = end;  
+     start =0;  
+     end = col-1;  
+     while(start <=end)  
+     {  
+          int mid = (start+end)/2;  
+          if(matrix[targetRow][mid] == target)  
+               return true;  
+          else if(matrix[targetRow][mid] < target)  
+               start = mid+1;  
+          else  
+               end = mid-1;  
+     }  
+     return false;  
+}
+vector<string> generateParenthesis(int n) {
+        // IMPORTANT: Please reset any member data you declared, as
+        //         // the same Solution instance will be reused for each test case.
+
+        unordered_map<int, vector<string> > res;
+        vector<string> curr;
+        if (n==0) return curr;
+
+        curr.push_back("()");
+        if (n==1) {
+                return curr;
+        }
+        res[1] = curr;
+        cout << "1:"<<res[1].size()<<endl;
+
+        for (int i=2; i<=n; ++i) {
+                curr.clear();
+                vector<string> last=res[i-1];
+                cout << "last cnt:"<<last.size()<<endl;
+                for (vector<string>::iterator it=last.begin(); it!=last.end(); ++it) {
+                        string s = string("()")+*it;
+                        if (find(curr.begin(), curr.end(), s) == curr.end())
+                                curr.push_back(s);
+                        s = string("(")+*it+string(")");
+                        if (find(curr.begin(), curr.end(), s) == curr.end())
+                                curr.push_back(s);
+                        s = *it+string("()");
+                        if (find(curr.begin(), curr.end(), s) == curr.end())
+                                curr.push_back(s);
+                }
+                res[i]=curr;
+                cout << "curr cnt:"<<curr.size()<<endl;
+        }
+        return curr;
+}
